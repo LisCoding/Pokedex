@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pokemon</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        // var data = $.get("http://pokeapi.co/api/v1/", function () {
+        // console.log(data);
+        for(var i = 1; i < 152; i++){
+          $('.pokemons').append("<img id="+ i +" src='http://pokeapi.co/media/img/"+ i +".png'>");
+        }
+
+        $('img').click(function () {
+          var id = $(this).attr("id");
+          var url = "http://pokeapi.co/api/v1/pokemon/" + id;
+          $.get(url, function(data) {
+            var name = data.name;
+            var image;
+            var height = data.height;
+            var weight = data.weight;
+            var type1 = data.types[0].name
+            // var type2 = data.types[1].name
+
+            $(".header").html(
+
+              "<h1>" + name + "</h1><img id="+ 0 +" src='http://pokeapi.co/media/img/"+ id
+              + ".png'><h2>Types</h2><ul><li>"
+              + type1 + "</li></ul><h2>Height</h2><p>"
+              + height + "</p><h2>Weight</h2><p>" + weight + "</p>"
+            )
+
+
+            // function typesInfo() {
+            //   var length = data.types.length;
+            //   for(var i = 0; i < length; i++){
+            //   return   $("ul").append("<li>" + data.types[i].name + "</li>");
+            //   }
+            // }
+
+        
+            // $('h1').html(data.name);
+            // $('.image').append("<img id="+ 0 +" src='http://pokeapi.co/media/img/"+ id +".png'>");
+            // var length = data.types.length;
+            // for(var i = 0; i < length; i++){
+            //   $("ul").append("<li>" + data.types[i].name + "</li>");
+            // }
+            // $('#height').append("<p>" + data.height + "</p>");
+            // $('#weight').append("<p>" + data.weight + "</p>");
+
+          }, "json");
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="pokemons">
+
+      </div>
+      <div class="pokedex">
+        <div class="header">
+        </div>
+        <div class="types">
+          <ul>
+
+          </ul>
+
+
+        </div>
+        <div class="info">
+
+        </div>
+
+
+
+
+
+      </div>
+    </div>
+
+  </body>
+</html>
